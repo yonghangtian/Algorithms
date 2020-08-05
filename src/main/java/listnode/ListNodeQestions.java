@@ -5,12 +5,6 @@ import java.util.LinkedList;
 
 public class ListNodeQestions {
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
-    }
-
     public static void main(String[] args) {
         ListNodeQestions algo = new ListNodeQestions();
         //[1,2,3,4,5]
