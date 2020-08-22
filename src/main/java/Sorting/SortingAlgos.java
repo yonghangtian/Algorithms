@@ -103,7 +103,8 @@ public class SortingAlgos {
             return;
         }
 
-        int index = partition(array,start, end);
+        int index = partition(array, start, end);
+
         if (index > start) {
             quickSortCore(array, start, index - 1);
         }
@@ -123,6 +124,7 @@ public class SortingAlgos {
         //swap randomIdx with end
         swap(array, randomIdx, end);
 
+        //REMEMBER: the iteration starts from START, end with END-1(<= end - 1), is also (< end)
         //put all value that is smaller than array[randomIdx] on the left side of randomIdx
         for (int index = start; index < end; index ++) {
 
@@ -138,7 +140,7 @@ public class SortingAlgos {
 
         //move array[randomIdx] back to array[small]
         swap(array, small, end);
-
+        // REMEMER: the returned value is small
         return small;
     }
 
