@@ -402,7 +402,7 @@ public class ListNodeQestions {
     /**
      *
      */
-    private static ListNode convertArrayToListNode(int[] array) {
+    public static ListNode convertArrayToListNode(int[] array) {
         ListNode head = new ListNode(array[0]);
         ListNode node = null;
         ListNode prev = head;

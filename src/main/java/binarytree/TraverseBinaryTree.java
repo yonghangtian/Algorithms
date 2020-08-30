@@ -99,23 +99,24 @@ public class TraverseBinaryTree {
     /**
      *  recursive method to construct binary tree using preorder and inorder result.
      * @param preorder
-     * @param prestart
-     * @param preend
+     * @param preStart
+     * @param preEnd
      * @param inorder
-     * @param instart
-     * @param inend
+     * @param inStart
+     * @param inEnd
+     *
      *
      * @return root
      */
-    private TreeNode constructCorePreAndIn(int[] preorder, int prestart, int preend,
-                                           int[] inorder, int instart, int inend) {
+    private TreeNode constructCorePreAndIn(int[] preorder, int preStart, int preEnd,
+                                           int[] inorder, int inStart, int inEnd) {
         // preorder: root, left, right
         // inorder: left, root, right
-        TreeNode root = new TreeNode(preorder[prestart]);
+        TreeNode root = new TreeNode(preorder[preStart]);
 
         // return condition
-        if (prestart == preend){
-            if (instart == inend && preorder[prestart] == inorder[instart]){
+        if (preStart == preEnd){
+            if (inStart == inEnd && preorder[preStart] == inorder[inStart]){
                 return root;
             } else {
                 System.out.println("Invalid input");
@@ -123,18 +124,22 @@ public class TraverseBinaryTree {
             }
         }
 
-        int rootIndexInorder = this.findRootInorder(inorder, root.val);
 
-        // recursive to construct
-        // construct left tree
-        if (rootIndexInorder >= instart && (prestart + 1) <= prestart + rootIndexInorder - instart){
-            root.left = constructCorePreAndIn(preorder,prestart + 1 , prestart + rootIndexInorder - instart,
-                    inorder, instart,rootIndexInorder - 1);
-        }
+        if (preStart < preEnd) {
+            int rootIndexInorder = this.findRootInorder(inorder, root.val);
+            int leftTreeLen = rootIndexInorder - inStart;
+            int rightTreeLen = inEnd - rootIndexInorder;
 
-        if (rootIndexInorder <= inend && (prestart + 1 + rootIndexInorder - instart) <= preend){
-            root.right = constructCorePreAndIn(preorder, prestart + 1 + rootIndexInorder - instart, preend,
-                    inorder, rootIndexInorder + 1, inend);
+            // recursive to construct
+            if (leftTreeLen > 0) {
+                root.left = constructCorePreAndIn(preorder,preStart+1, preStart+leftTreeLen,
+                        inorder,  inStart, rootIndexInorder-1);
+            }
+
+            if (rightTreeLen > 0) {
+                root.right = constructCorePreAndIn(preorder,preStart+leftTreeLen+1, preEnd,
+                        inorder, rootIndexInorder+1, inEnd);
+            }
         }
 
         return root;
