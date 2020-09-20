@@ -33,7 +33,7 @@ public class MedianFinder {
 
     public MedianFinder() {
         // Maximum heap, the value of each node is less than or equal to the value of its parent, with the maximum-value element at the root
-        maxHeap = new PriorityQueue(new Comparator<Integer>(){
+        maxHeap = new PriorityQueue<>(new Comparator<Integer>(){
             @Override
             public int compare(Integer a, Integer b) {
                 return b.compareTo(a);
@@ -41,7 +41,7 @@ public class MedianFinder {
         });
 
         // Minimum heap, the value of each node is greater than or equal to the value of its parent, with the minimum-value element at the root.
-        minHeap = new PriorityQueue(new Comparator<Integer>(){
+        minHeap = new PriorityQueue<>(new Comparator<Integer>(){
             @Override
             public int compare(Integer a, Integer b) {
                 return a.compareTo(b);
